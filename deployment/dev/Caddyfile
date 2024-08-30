@@ -1,0 +1,20 @@
+{
+   email user1@gmail.com 
+}
+
+localhost {
+    reverse_proxy http://app1:5000
+}
+
+blogapp.localhost {
+    reverse_proxy http://app2:5000
+}
+
+eventapp.localhost {
+    reverse_proxy http://app3:5000
+}
+
+todoapp.localhost {
+    reverse_proxy http://app4:5000
+}
+

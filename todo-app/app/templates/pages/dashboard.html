@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{%block title %}Dashboard{% endblock %}
+
+{% block additional_css%}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1 class="professional-h1 mb-3">Todo Dashboard</h1>
+
+  <div class="col-md-12">
+  {% include "partials/_flash.html"%}
+	
+  </div>
+  </div>
+{% endblock %}

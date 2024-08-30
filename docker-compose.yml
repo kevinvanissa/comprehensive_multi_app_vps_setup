@@ -1,0 +1,73 @@
+services:
+  app1:
+    build:
+      context: .
+      dockerfile: Dockerfile.portfolio-app
+    image: portfolio-app
+    environment:
+      - APP_STATE=development
+    depends_on:
+      - db
+  app2:
+    build:
+      context: .
+      dockerfile: Dockerfile.blog-app
+    image: blog-app
+    environment:
+      - APP_STATE=development
+    depends_on:
+      - db
+  app3:
+    build:
+      context: .
+      dockerfile: Dockerfile.event-app
+    image: event-app
+    environment:
+      - APP_STATE=development
+    depends_on:
+      - db
+  app4:
+    build:
+      context: .
+      dockerfile: Dockerfile.todo-app
+    image: todo-app 
+    environment:
+      - APP_STATE=development
+    depends_on:
+      - db
+  db:
+    image: mariadb:latest 
+    expose:
+      - "3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASS} 
+      MYSQL_DATABASE: dummydb
+    volumes:
+      - mariadbdata:/var/lib/mysql
+      - ./db:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+  caddy:
+    image: caddy:latest
+    ports:
+      - "8080:80"
+      - "443:443"
+    volumes:
+      - ./deployment/dev/Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - app1
+      - app2
+      - app3
+      - app4
+
+networks:
+  default:
+    name: personal-apps_default
+
+volumes:
+  mariadbdata:
+  caddy_data:
+  caddy_config:
+

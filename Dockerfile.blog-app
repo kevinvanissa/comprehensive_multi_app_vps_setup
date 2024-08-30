@@ -1,0 +1,11 @@
+FROM python:3.12.3
+WORKDIR /blog-app
+
+COPY blog-app/app app
+COPY blog-app/requirements.txt blog-app/config.py  blog-app/.flaskenv blog-app/.env-dev blog-app/.env-standalone blog-app/run.py ./
+RUN pip install -r ./requirements.txt
+RUN pip install gunicorn
+ENV FLASK_DEBUG False
+
+EXPOSE 5000
+CMD ["gunicorn", "-b", ":5000", "run:app"]

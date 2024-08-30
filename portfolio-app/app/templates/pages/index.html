@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{%block title %}Home Page{% endblock %}
+
+{% block content %}
+  {% include "partials/_flash.html"%}
+    <div class="container">
+        <h1 class="text-center">WELCOME TO MY PORTFOLIO</h1>
+
+	<div class="row mt-5">
+		<div class="col-6">
+			<h3>Hi, I'm John Doe</h3>
+			<p>
+				Your information goes here...
+			</p>
+		</div>
+       <div class="col-6">
+			<div class="container text-center">
+		   <img src="/static/img/user1.png" class="rounded-circle img-fluid m-3" alt="my pic">
+		   <h4 align="center">Your Position Goes Here</h4>
+			</div>
+		</div>
+	</div>
+
+	<div class="row bg-light p-2">	
+		   <h4 align="center">Recent Projects</h4>
+	</div>	
+
+<div class="row mt-5">	
+		<div class="card-container">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Event App</h5>
+                    <p class="card-text">This Content is for Event App</p>
+					<p class="card-text"><a href="{{eventapp_server}}" class="btn btn-primary btn-sm" target="_blank">Visit Website</a></p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Todo App</h5>
+                    <p class="card-text">This Content is for Todo App</p>
+					<p class="card-text"><a href="{{todoapp_server}}" class="btn btn-primary btn-sm" target="_blank">Visit Website</a></p>
+                </div>
+            </div>
+                       <!-- Add more cards as needed -->
+        </div>
+	</div>	
+
+    </div>
+{% endblock %}
